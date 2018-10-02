@@ -6,7 +6,7 @@ A continuación se muestra las indicaciones para realizar la prueba:
 ## Requisitos
 - Es necesario tener instalado al menos la JDK 8
 - Es necesario tener instalado GIT
-- Es necesario tener instalado Maven ya sea de forma local o bien mediante la versión embebida que ofrece Eclipse
+- Es necesario tener instalado Maven ya sea de forma local o bien mediante la versión embebida que ofrecen algunos IDEs (por ejemplo Eclipse)
 
 ## Descripción del problema
 Se requiere implementar un API REST con las operaciones CRUD básicas para gestionar libros. La ruta para acceder a este
