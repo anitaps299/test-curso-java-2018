@@ -27,3 +27,37 @@ recurso será "/book" y el servidor donde se ejecute lo hará a través del puer
 ## Control de errores
 - 400 (Bad request): La url que se ha usado no cumple con las especificaciones fijadas en el controlador
 - 404 (Not found): No existe en recurso que se busca
+
+## Paginación
+```
+{
+    "content": [],
+    "pageable": {
+        "sort": {
+            "sorted": false,
+            "unsorted": true
+        },
+        "pageSize": 10,
+        "pageNumber": 0,
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+    },
+    "totalPages": 1,
+    "totalElements": 2,
+    "last": true,
+    "first": true,
+    "sort": {
+        "sorted": false,
+        "unsorted": true
+    },
+    "numberOfElements": 2,
+    "size": 10,
+    "number": 0
+}
+```
+- content: Lista de los recursos obtenidos
+- totalElements: Número total de elementos recuperados
+- numberOfElements: Número de elementos que se mostraran en la página actual
+- size: Número de elementos por página
+- number: Número de página actual
