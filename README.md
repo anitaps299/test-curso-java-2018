@@ -8,10 +8,6 @@ A continuación se muestra las indicaciones para realizar la prueba:
 - Es necesario tener instalado GIT
 - Es necesario tener instalado Maven ya sea de forma local o bien mediante la versión embebida que ofrecen algunos IDEs (por ejemplo Eclipse)
 
-## Descripción del problema
-Se requiere implementar un API REST con las operaciones CRUD básicas para gestionar libros. La ruta para acceder a este
-recurso será "/book" y el servidor donde se ejecute lo hará a través del puerto 8080.
-
 ## Modelo de datos
 `{
 	"isbn": "ABN123443311",
@@ -61,3 +57,8 @@ recurso será "/book" y el servidor donde se ejecute lo hará a través del puer
 - numberOfElements: Número de elementos que se mostraran en la página actual
 - size: Número de elementos por página
 - number: Número de página actual
+
+
+## Descripción del problema
+Se requiere implementar un API REST con las operaciones CRUD básicas para gestionar libros. La ruta para acceder a este
+recurso será "/book" y el servidor se ejecutará bajo el puerto 8080.
