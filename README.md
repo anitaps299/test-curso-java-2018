@@ -9,13 +9,15 @@ A continuación se muestra las indicaciones para realizar la prueba:
 - Es necesario tener instalado Maven ya sea de forma local o bien mediante la versión embebida que ofrecen algunos IDEs (por ejemplo Eclipse)
 
 ## Modelo de datos
-`{
+```
+{
 	"isbn": "ABN123443311",
 	"name": "The lord of the rings",
 	"synopsis": "The Lord of the Rings is an epic high fantasy novel written by English author and scholar ...",
 	"pages": "1900"
-}`
-- isbn: Codigo unico que identifica un libro
+}
+```
+- isbn: Codigo unico que identifica a un libro
 - name: Nombre del libro
 - synopsis: Descripción breve del libro
 - pages: Numero de paginas que contiene el libro
