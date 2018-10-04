@@ -71,10 +71,10 @@ recurso será "/book" y el servidor se ejecutará bajo el puerto 8080.
 
 Ademas de lo anterior se debe permitir realizar busquedas por nombre a traves de la ruta "/book?name=harry". Se debera buscar todos los libros que contengan la palabra "harry" en su nombre.
 
-## Solución
-Una vez finalizada la prueba se subirá el codigo al repositorio creando un tag (solucion) para su posterior uso, ya sea para otros cursos o para la comunidad de Github.
-
 ## Correccion de la prueba
 Para corregir la solucion implementada se proporciona una coleccion de pruebas para POSTMAN, para ejecutarlo importarlo desde la aplicacion (POSTMAN) y ejecutar todas las pruebas con un Runner (https://www.getpostman.com/docs/v6/postman/collection_runs/starting_a_collection_run)
 
 Para facilitar su uso se definio una variable de entorno en POSTMAN, por lo que para usar las pruebas es necesario que cree una variable de entorno "host" con la url donde se ejecuta su aplication, por ejemplo "localhost"
+
+## Solución
+Una vez finalizada la prueba se subirá el codigo al repositorio creando un tag (solucion) para su posterior uso, ya sea para otros cursos o para la comunidad de Github.
