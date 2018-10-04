@@ -71,6 +71,8 @@ recurso será "/book" y el servidor se ejecutará bajo el puerto 8080.
 
 Ademas de lo anterior se debe permitir realizar busquedas por nombre a traves de la ruta "/book?name=harry". Se debera buscar todos los libros que contengan la palabra "harry" en su nombre.
 
+No se requiere conexion con base de datos ya que con el proyecto base proporcionado para hacer la prueba se autoconfigura una base de datos en memoria H2, por lo que no es necesario realizar ninguna configuracion de la aplicacion con base de datos.
+
 ## Correccion de la prueba
 Para corregir la solucion implementada se proporciona una coleccion de pruebas para POSTMAN, para ejecutarlo importarlo desde la aplicacion (POSTMAN) y ejecutar todas las pruebas con un Runner (https://www.getpostman.com/docs/v6/postman/collection_runs/starting_a_collection_run)
 
