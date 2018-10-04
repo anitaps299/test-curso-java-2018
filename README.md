@@ -11,12 +11,14 @@ A continuación se muestra las indicaciones para realizar la prueba:
 ## Modelo de datos
 ```
 {
+        "id: "1",
 	"isbn": "ABN123443311",
 	"name": "The lord of the rings",
 	"synopsis": "The Lord of the Rings is an epic high fantasy novel written by English author and scholar ...",
 	"pages": "1900"
 }
 ```
+- id: Identificador unico del recurso
 - isbn: Codigo unico que identifica a un libro
 - name: Nombre del libro
 - synopsis: Descripción breve del libro
@@ -27,6 +29,7 @@ A continuación se muestra las indicaciones para realizar la prueba:
 - 404 (Not found): No existe en recurso que se busca
 
 ## Paginación
+A continuacion se muestra la paginacion que se ha usado en la solucion del problema descrito:
 ```
 {
     "content": [],
@@ -54,6 +57,7 @@ A continuación se muestra las indicaciones para realizar la prueba:
     "number": 0
 }
 ```
+Sin embargo, es necesario que la paginacion tenga los siguientes campos para cumplir los requerimientos definidos en los test:
 - content: Lista de los recursos obtenidos
 - totalElements: Número total de elementos recuperados
 - numberOfElements: Número de elementos que se mostraran en la página actual
@@ -65,5 +69,12 @@ A continuación se muestra las indicaciones para realizar la prueba:
 Se requiere implementar un API REST con las operaciones CRUD básicas para gestionar libros. La ruta para acceder a este
 recurso será "/book" y el servidor se ejecutará bajo el puerto 8080.
 
+Ademas de lo anterior se debe permitir realizar busquedas por nombre a traves de la ruta "/book?name=harry". Se debera buscar todos los libros que contengan la palabra "harry" en su nombre.
+
 ## Solución
 Una vez finalizada la prueba se subirá el codigo al repositorio creando un tag (solucion) para su posterior uso, ya sea para otros cursos o para la comunidad de Github.
+
+## Correccion de la prueba
+Para corregir la solucion implementada se proporciona una coleccion de pruebas para POSTMAN, para ejecutarlo importarlo desde la aplicacion (POSTMAN) y ejecutar todas las pruebas con un Runner (https://www.getpostman.com/docs/v6/postman/collection_runs/starting_a_collection_run)
+
+Para facilitar su uso se definio una variable de entorno en POSTMAN, por lo que para usar las pruebas es necesario que cree una variable de entorno "host" con la url donde se ejecuta su aplication, por ejemplo "localhost"
