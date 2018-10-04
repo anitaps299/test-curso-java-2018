@@ -1,0 +1,548 @@
+{
+	"info": {
+		"_postman_id": "0c7a375e-b8f6-4be9-8160-8a4dfede0c8a",
+		"name": "Curso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "977f18f5-3880-4dc3-9509-58501e55685e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo OK (200)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"var host = pm.environment.get(\"variable_key\");",
+							"var bookId = jsonData.id;",
+							"pm.environment.set(\"bookId\", bookId);",
+							"",
+							"pm.test(\"Se le ha asignado un id al libro en BD\", function () {",
+							"     pm.expect(jsonData).to.have.property('id');",
+							"});",
+							"",
+							"pm.test(\"Comprobar que los datos se han guardado correctamente\", function () {",
+							"    pm.expect(jsonData.isbn).to.eql(\"ABN123443311\");",
+							"    pm.expect(jsonData.name).to.eql(\"The lord of the rings\");",
+							"    pm.expect(jsonData.synopsis).to.eql(\"The Lord of the Rings is an epic high fantasy novel written by English author and scholar ...\");",
+							"    pm.expect(jsonData.pages).to.eql(1900);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"isbn\": \"ABN123443311\",\n\t\"name\": \"The lord of the rings\",\n\t\"synopsis\": \"The Lord of the Rings is an epic high fantasy novel written by English author and scholar ...\",\n\t\"pages\": \"1900\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}:8080/book",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar libros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "243a5d6e-34ef-4b3d-8329-b900c19e3a93",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo OK (200)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar libro creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad1ce003-2d92-4e83-9ae2-9cceb9762365",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo OK (200)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Comprobar que el libro recuperado es el que se ha creado previamente\", function () {",
+							"    pm.expect(jsonData.isbn).to.eql(\"ABN123443311\");",
+							"    pm.expect(jsonData.name).to.eql(\"The lord of the rings\");",
+							"    pm.expect(jsonData.synopsis).to.eql(\"The Lord of the Rings is an epic high fantasy novel written by English author and scholar ...\");",
+							"    pm.expect(jsonData.pages).to.eql(1900);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book/{{bookId}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"{{bookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fcee8edb-b255-4a07-b8c2-895ebe58581a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo OK (200)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": {{bookId}},\n\t\"isbn\": \"QBP333222111\",\n\t\"name\": \"The lord of the rings\",\n\t\"synopsis\": \"The Lord of the Rings is an epic high fantasy novel written by English author and scholar ...\",\n\t\"pages\": \"2500\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}:8080/book/{{bookId}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"{{bookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8048685a-b66a-443d-8f58-78d4d32e1fea",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo OK (200)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book/{{bookId}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"{{bookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar libro eliminado (NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0ee47f0-f67f-4d89-9ac0-5fc9b7102b66",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo NotFound (404)\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book/{{bookId}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"{{bookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Peticion erronea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f5346cd-51a9-4b5a-af6b-4020e7257d03",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo BadRequest (400)\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book/sads213",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"sads213"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar libro inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6b2486e-f3e8-4f54-9695-28f78577ff70",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo NotFound (404)\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book/999999",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book",
+						"999999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar libros con paginacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f4fdaee-863b-4161-bec2-6b1a3f3ffc3b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo OK (200)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Existe un parametro number y su valor es 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.number).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Existe un parametro size y su valor es 5\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.size).to.eql(5);",
+							"});",
+							"",
+							"pm.test(\"Existe un parametro numberOfElements y su valor es 5\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.numberOfElements).to.eql(5);",
+							"});",
+							"",
+							"pm.test(\"Existe un parametro totalElements y su valor es 10\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.totalElements).to.eql(10);",
+							"});",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "72170ca6-7afa-4a52-bd45-2659a0077615",
+						"type": "text/javascript",
+						"exec": [
+							"// var host = pm.globals.get(\"host\"); ",
+							"var host = pm.environment.get(\"host\");",
+							"",
+							"var book = {",
+							"    \"id\": 1,",
+							"    \"isbn\": \"ABN123443311\",",
+							"    \"name\": \"The lord of the rings\",",
+							"    \"synopsis\": \"The Lord of the Rings is an epic high fantasy novel written by English author and scholar ...\",",
+							"    \"pages\": 1900",
+							"}",
+							"",
+							"var reqParams = {",
+							"    url: host + \":8080/book\",",
+							"    method: \"POST\",",
+							"    header: {",
+							"       \"Content-Type\": \"application/json\",",
+							"       \"Accept\":\"application/json\",",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({book})",
+							"    }",
+							"};",
+							"",
+							"for (var i = 0; i < 10; i++) {",
+							"    pm.sendRequest(reqParams, function (err, response) { console.log(response) });",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book?page=1&size=5",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por nombre",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ffb1caba-18ef-4b80-a069-c7d89cc04420",
+						"type": "text/javascript",
+						"exec": [
+							"var host = pm.globals.get(\"host\"); ",
+							"//var host = pm.environment.get(\"host\");",
+							"",
+							"var book1 = {",
+							"    \"isbn\": \"ahsdghjsgadj23\",",
+							"    \"name\": \"El Asedio\",",
+							"    \"synopsis\": \"asdhjgasjhdg ja gjkgsadjksga jaksdgskajdh jkasgdjkasgdjakshgdj \",",
+							"    \"pages\": 190",
+							"}",
+							"",
+							"var reqParams1 = {",
+							"    url: host + \":8080/book\",",
+							"    method: \"POST\",",
+							"    header: {",
+							"       \"Content-Type\": \"application/json\",",
+							"       \"Accept\":\"application/json\",",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify(book1)",
+							"    }",
+							"};",
+							"",
+							"var book2 = {",
+							"    \"isbn\": \"ahsdghjsgadj23\",",
+							"    \"name\": \"The Lord of the rings\",",
+							"    \"synopsis\": \"asdhjgasjhdg ja gjkgsadjksga jaksdgskajdh jkasgdjkasgdjakshgdj \",",
+							"    \"pages\": 190",
+							"}",
+							"",
+							"var reqParams2 = {",
+							"    url: host + \":8080/book\",",
+							"    method: \"POST\",",
+							"    header: {",
+							"       \"Content-Type\": \"application/json\",",
+							"       \"Accept\":\"application/json\",",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify(book2)",
+							"    }",
+							"};",
+							"",
+							"var book3 = {",
+							"    \"isbn\": \"ahsdghjsgadj23\",",
+							"    \"name\": \"Lords of the Underworld\",",
+							"    \"synopsis\": \"asdhjgasjhdg ja gjkgsadjksga jaksdgskajdh jkasgdjkasgdjakshgdj \",",
+							"    \"pages\": 190",
+							"}",
+							"",
+							"var reqParams3 = {",
+							"    url: host + \":8080/book\",",
+							"    method: \"POST\",",
+							"    header: {",
+							"       \"Content-Type\": \"application/json\",",
+							"       \"Accept\":\"application/json\",",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify(book3)",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(reqParams1, function (err, response) { console.log(response) });",
+							"pm.sendRequest(reqParams2, function (err, response) { console.log(response) });",
+							"pm.sendRequest(reqParams3, function (err, response) { console.log(response) });"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d3f93e5-fcc0-4a58-902b-c80ade751b01",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Responde con codigo OK (200)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Existe un parametro numberOfElements y su valor es 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.numberOfElements).to.eql(2);",
+							"});",
+							"",
+							"pm.test(\"Existe un parametro totalElements y su valor es 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.totalElements).to.eql(2);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{host}}:8080/book?name=Lord",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8080",
+					"path": [
+						"book"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Lord"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
