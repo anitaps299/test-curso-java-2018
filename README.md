@@ -64,3 +64,6 @@ A continuación se muestra las indicaciones para realizar la prueba:
 ## Descripción del problema
 Se requiere implementar un API REST con las operaciones CRUD básicas para gestionar libros. La ruta para acceder a este
 recurso será "/book" y el servidor se ejecutará bajo el puerto 8080.
+
+## Solución
+Una vez finalizada la prueba se subirá el codigo al repositorio creando un tag (solucion) para su posterior uso, ya sea para otros cursos o para la comunidad de Github.
